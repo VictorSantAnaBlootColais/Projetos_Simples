@@ -50,9 +50,8 @@ while True:
             break
     elif escolha == 3:
         linhas()
-        print(f'Todos os nome dessa lista são:\n{nomes}')
-        print(f'Todos as idades dessa lista são\n{idades}')
-        print(f'Todos os Cpfs dessa lista são\n{cpfs}')
+        for e in range(len(nomes)): 
+            print(f'nome: {nomes[e]} |idade: {idades[e]}| cpf: {cpfs[e]}')
         Quer_continuar()
         escolha = int(input('Escolha uma opção no menu para continuar: '))
         if escolha == 1:
