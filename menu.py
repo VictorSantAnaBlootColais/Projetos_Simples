@@ -6,26 +6,29 @@ def Quer_continuar():
     print('Voltar ao menu - 1\nSair - 2')
     linhas()
 
-nomes = ['Sofia', 'Samara', 'Manuela']
-idades = [18, 20, 40]
-cpfs = [143, 222, 000]
+clientes = [{"nome": "Victor", "email": "vctorblt@gmail.com", "telefone": "41984825864", "cidade": "Curitiba"}]
 
 while True:
     linhas()
     print('     MENU DE CADASTROS')
     linhas()
-    print('Cadastrar Usuarios - 1\nBuscar Usuarios - 2\nListar Usuarios - 3\nRemover Usuarios - 4\nSair - 5')
+    print('1 - Cadastrar Clientes\n2 - Buscar Clientes\n3 - Listar Clientes\n4 - Remover Clientes\n5 - Editar Clientes\n6 - Sair')
     escolha = int(input('Digite a opção desejada: '))
-    
+
     if escolha == 1:
         linhas()
         print('Para cadastrar um usuario insira as informações abaixo: ')
         nome = input('Digite o nome: ')
-        idade = int(input('Digite a idade: '))
-        cpf = int(input('Digite o cpf: '))
-        nomes.append(nome)
-        idades.append(idade)
-        cpfs.append(cpf)
+        email = input('Digite o email: ')
+        telefone = input('Digite o telefone: ')
+        cidade = input('Digite a cidade: ')
+        cliente = {
+            "nome" : nome,
+            "email" : email,
+            "telefone" : telefone,
+            "cidade" : cidade
+        }
+        clientes.append(cliente)
         Quer_continuar()
         escolha = int(input('Escolha uma opção no menu para continuar: '))
         if escolha == 1:
@@ -36,11 +39,12 @@ while True:
         linhas()
         nome = input('Digite em o nome para pesquisar: ')
         linhas()
-        for i in range(len(nomes)):
-            if nome == nomes[i]:
-                print(f'nome na posição {i}: {nomes[i]}')
-                print(f'Idades na posição {i}: {idades[i]}')
-                print(f'Cpf na posição {i}: {cpfs[i]}')
+        for cliente in clientes:
+            if nome == cliente["nome"]:
+                print(f'nome : {cliente["nome"]}')
+                print(f'email : {cliente["email"]}')
+                print(f'telefone : {cliente["telefone"]}')
+                print(f'cidade : {cliente["cidade"]}')
                 linhas()
         Quer_continuar()
         escolha = int(input('Escolha uma opção no menu para continuar: '))
@@ -50,8 +54,13 @@ while True:
             break
     elif escolha == 3:
         linhas()
-        for e in range(len(nomes)): 
-            print(f'nome: {nomes[e]} |idade: {idades[e]}| cpf: {cpfs[e]}')
+        for numero, cliente in enumerate(clientes, start=1):
+          linhas()
+          print(f"Cliente {numero}")
+          print(f"Nome: {cliente["nome"]}")
+          print(f"Email: {cliente["email"]}")
+          print(f"telefone: {cliente["telefone"]}")
+          print(f"Cidade: {cliente["cidade"]}")
         Quer_continuar()
         escolha = int(input('Escolha uma opção no menu para continuar: '))
         if escolha == 1:
@@ -60,12 +69,11 @@ while True:
             break
     elif escolha == 4:
         linhas()
-        for e in range(len(nomes)):
-                print(f'{e + 1} - {nomes[e]}')
+        for numero, cliente in enumerate(clientes, start=1):
+                print(f'{numero} - {cliente["nome"]}')
         remover = int(input('Digite o indice que deseja remover(ex: 1 - Victor)'))
-        nomes.pop(remover - 1)
-        idades.pop(remover - 1)
-        cpfs.pop(remover - 1)
+        clientes.pop(remover - 1)
+        print("Cliente removido com sucesso")
 
         Quer_continuar()
         escolha = int(input('Escolha uma opção no menu para continuar: '))
@@ -73,13 +81,41 @@ while True:
             continue
         else:
             break
+
     elif escolha == 5:
-        break
+        linhas()
+        for numero, cliente in enumerate(clientes, start=1):
+                      print(f'{numero} - {cliente["nome"]}')
+        atualizar = int(input("Digite o número do usuário que deseja atualizar: "))
+        cliente = clientes[atualizar - 1]
+        print(f"Nome: {cliente["nome"]}")
+        print(f"Email: {cliente["email"]}")
+        print(f"Telefone: {cliente["telefone"]}")
+        print(f"Cidade: {cliente["cidade"]}")
 
-    else:
-        print('Opção Invalida, escolha outra opção')
-        continue
+        print("Campo de atualização liberado")
+        nome = input('Digite o nome: ')
+        cliente["nome"] = nome
+
+        email = input('Digite o email: ')
+        cliente["email"] = email
+
+        telefone = input('Digite o telefone: ')
+        cliente["telefone"] = telefone
+
+        cidade = input('Digite a cidade: ')
+        cliente["cidade"] = cidade
+
+        print("Cliente Atualizado com sucesso")
+        Quer_continuar()
+        if escolha == 6:
+            break
+
+        else:
+            print('Opção Invalida, escolha outra opção')
+            continue
 
 
 
-    
+
+
