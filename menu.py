@@ -108,12 +108,18 @@ while True:
 
         print("Cliente Atualizado com sucesso")
         Quer_continuar()
-        if escolha == 6:
+        escolha = int(input('Escolha uma opção no menu para continuar: '))
+        if escolha == 1:
+            continue
+        else:
             break
 
-        else:
-            print('Opção Invalida, escolha outra opção')
-            continue
+    if escolha == 6:
+        break
+
+    else:
+        print('Opção Invalida, escolha outra opção')
+        continue
 
 
 
