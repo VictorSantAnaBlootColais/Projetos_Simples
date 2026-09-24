@@ -9,23 +9,16 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
-sql = """
-INSERT INTO clientes (nome, email, telefone, cidade)
-VALUES (%s, %s, %s, %s)
-"""
+cursor.execute("SELECT * FROM clientes")
 
-dados = (
-    "Victor",
-    "victor@gmail.com",
-    "41984825864",
-    "Curitiba"
-)
+clientes = cursor.fetchall()
 
-cursor.execute(sql, dados)
-
-conexao.commit()
-
-print("Cliente cadastrado com sucesso!")
+for cliente in clientes:
+    print(f"ID: {cliente[0]}")
+    print(f"Nome: {cliente[1]}")
+    print(f"Email: {cliente[2]}")
+    print(f"Telefone: {cliente[3]}")
+    print(f"Cidade: {cliente[4]}")
 
 cursor.close()
 conexao.close()

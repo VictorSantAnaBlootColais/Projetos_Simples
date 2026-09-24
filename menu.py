@@ -1,3 +1,15 @@
+import mysql.connector
+
+conexao = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="Drito_42_u",
+    database="cadastro_clientes"
+)
+
+cursor = conexao.cursor()
+
+
 def linhas():
     print('-'*30)
 
@@ -6,7 +18,6 @@ def Quer_continuar():
     print('Voltar ao menu - 1\nSair - 2')
     linhas()
 
-clientes = [{"nome": "Victor", "email": "vctorblt@gmail.com", "telefone": "41984825864", "cidade": "Curitiba"}]
 
 while True:
     linhas()
@@ -54,19 +65,28 @@ while True:
             break
     elif escolha == 3:
         linhas()
+
+        cursor.execute("SELECT * FROM clientes")
+
+        clientes = cursor.fetchall()
+
         for numero, cliente in enumerate(clientes, start=1):
-          linhas()
-          print(f"Cliente {numero}")
-          print(f"Nome: {cliente["nome"]}")
-          print(f"Email: {cliente["email"]}")
-          print(f"telefone: {cliente["telefone"]}")
-          print(f"Cidade: {cliente["cidade"]}")
+            linhas()
+            print(f'Cliente {numero}')
+            print(f'ID: {cliente[0]}')
+            print(f'Nome: {cliente[1]}')
+            print(f'Email: {cliente[2]}')
+            print(f'Telefone: {cliente[3]}')
+            print(f'Cidade: {cliente[4]}')
+
         Quer_continuar()
         escolha = int(input('Escolha uma opção no menu para continuar: '))
+
         if escolha == 1:
             continue
         else:
             break
+
     elif escolha == 4:
         linhas()
         for numero, cliente in enumerate(clientes, start=1):
